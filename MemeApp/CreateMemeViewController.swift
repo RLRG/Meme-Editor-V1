@@ -24,7 +24,7 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var navBarConstraint: NSLayoutConstraint!
     
     
-    // MARK: Lifecycle methods
+    // MARK: Lifecycle & initialization methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,17 +38,18 @@ class CreateMemeViewController: UIViewController, UIImagePickerControllerDelegat
             NSStrokeWidthAttributeName : -5.0,
             ]
         
-        // Top textfield
-        topText.text = "TOP"
-        topText.delegate = self
-        topText.defaultTextAttributes = memeTextAttributes
-        
-        // Bottom texfield
-        bottomText.text = "BOTTOM"
-        bottomText.delegate = self
-        bottomText.defaultTextAttributes = memeTextAttributes
+        // Top & bottom textfields
+        inititializeTextFieldWithAttributes(topText, text: "TOP", attributes: memeTextAttributes)
+        inititializeTextFieldWithAttributes(bottomText, text: "BOTTOM", attributes: memeTextAttributes)
     }
 
+    func inititializeTextFieldWithAttributes(textfield: UITextField, text: String, attributes: [String:AnyObject])
+    {
+        textfield.text = text
+        textfield.delegate = self
+        textfield.defaultTextAttributes = attributes
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
